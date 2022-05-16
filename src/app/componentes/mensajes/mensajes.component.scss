@@ -1,0 +1,91 @@
+.chat {
+  position: static;
+  width: 35%;
+  height: 35px;
+  background-color: blue;
+  left: 2px;
+  top: 1062px;
+  flex: none;
+  order: 10;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 10px 0px;
+}
+
+#mensajes {
+  overflow-y: scroll;
+
+  width: 100%;
+  height: 100%;
+  background-color: beige !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 3px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 200px;
+  width: 100%;
+  height: fit-content;
+
+  .wrapper-der {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 1rem;
+    justify-content: flex-end;
+    width: 100%;
+    .mensaje-der {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 1rem;
+      gap: 1rem;
+      margin-right: 2rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+
+      width: fit-content;
+      max-width: 45%;
+      height: fit-content;
+      text-align: justify;
+      text-justify: inter-word;
+
+      background: #B1DEA9;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 25px 25px 5px 25px;
+    }
+  }
+
+  .wrapper-izq {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1rem;
+    width: 100%;
+    .mensaje-izq {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 1rem;
+      gap: 1rem;
+      margin-left: 2rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+      width: fit-content;
+      max-width: 45%;
+      height: fit-content;
+      text-align: justify;
+      text-justify: inter-word;
+      background: #B1DEA9;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 5px 25px 25px 25px;
+    }
+  }
+}

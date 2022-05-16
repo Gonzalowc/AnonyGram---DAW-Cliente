@@ -1,0 +1,42 @@
+.example-card {
+    border-radius: 0px 0px 15px 0px;
+    max-width: 100%;
+    background-color: gray;
+    overflow: hidden;
+    -webkit-border-radius: 0px 0px 15px 0px;
+    -moz-border-radius: 0px 0px 15px 0px;
+    -ms-border-radius: 0px 0px 15px 0px;
+    -o-border-radius: 0px 0px 15px 0px;
+    height: fit-content;
+    padding-bottom: 0;
+    &:hover {
+      box-shadow: blue;
+    }
+  }
+  
+  
+  hr {
+    border: 1px solid black;
+    padding: 0;
+    margin: 0;
+  }
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  
+  mat-card-title {
+    font-weight: bold;
+    overflow: hidden;
+  }
+  
+  
+  
+  @media screen and (max-width: 800px) {
+    div > div {
+      background-color: red;
+    }
+    mat-card-title, mat-card-subtitle {
+      display: none;
+    }
+  }

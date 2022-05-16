@@ -1,0 +1,29 @@
+.example-card {
+  display: flex;
+    border-radius: 0px 0px 15px 0px;
+    max-width: 100%;
+    background-color: gray;
+    overflow: hidden;
+    -webkit-border-radius: 0px 0px 15px 0px;
+    -moz-border-radius: 0px 0px 15px 0px;
+    -ms-border-radius: 0px 0px 15px 0px;
+    -o-border-radius: 0px 0px 15px 0px;
+    height: fit-content;
+    padding-bottom: 0;
+    align-items: flex-end;
+    justify-content: flex-start;
+    &:hover {
+      box-shadow: blue;
+    }
+  }
+  
+  .example-header-image {
+    background-size: cover;
+  }
+  
+  mat-card-title {
+    font-weight: bold;
+    overflow: hidden;
+    text-align: center;
+    text-justify: newspaper;
+  }
