@@ -46,7 +46,9 @@
  * Zone JS is required by default for Angular itself.
  */
 import 'zone.js';  // Included with Angular CLI.
-
+/*WebSocket stomp sockjs*/
+(window as any).__Zone_enable_cross_context_check = false;
+(window as any).global = window;
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

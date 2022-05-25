@@ -1,8 +1,7 @@
 export interface MensajeCompleto {
-    id_mensaje:number,
-    active:boolean,
     mensaje:string,
+    id_usuario: number,
+    active:boolean,
     timestamp:Date,
     id_chat: number,
-    id_usuario: number,
 }

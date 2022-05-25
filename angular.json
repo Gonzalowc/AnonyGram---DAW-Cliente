@@ -31,7 +31,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/style/_base.scss"
             ],
             "scripts": []
           },
@@ -72,10 +73,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "anony-gram:build",
-            "port": 8080,
+            "proxyConfig": "src/proxy.conf.json",
+            "port": 8081,
             "sslCert": "./anonygram-selfsigned.crt",
             "sslKey": "./anonygram-selfsigned.key",
-            "ssl": true
+            "ssl": false
           },
           "configurations": {
             "production": {
@@ -106,7 +108,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/style/_base.scss"
             ],
             "scripts": []
           }

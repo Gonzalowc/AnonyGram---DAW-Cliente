@@ -18,6 +18,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 // import { CanActivateAuthInstaService } from './services/can-activate-auth-insta.service';
 import { MatInputModule } from '@angular/material/input';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { UsuarioService } from './services/usuario/usuario.service';
+import { MensajeService } from './services/mensajes/mensaje.service';
+import { ChatService } from './services/chat/chat.service';
+
+const config: SocketIoConfig = {url: 'http://localhost:8080', options: {}};
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +48,14 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    SocketIoModule.forRoot(config),
+  ],
+  providers: [
+    UsuarioService,
+    MensajeService,
+    ChatService
   ],
   bootstrap: [AppComponent] 
 })
 export class AppModule { }
+

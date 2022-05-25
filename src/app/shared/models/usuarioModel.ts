@@ -6,3 +6,14 @@ export interface UsuarioCompleto {
     usuario: string,
     password?: string,
 }
+
+export interface UsuarioRegister {
+    usuario: string,
+    name: string,
+    password: string
+}
+
+export interface UsuarioLogin {
+    usuario:string,
+    password:string
+}

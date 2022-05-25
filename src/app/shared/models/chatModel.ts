@@ -5,7 +5,7 @@ export interface ChatCompleto {
     nombre_chat_respuesta?:string,
     id_usuario_creador:number,
     id_usuario_respuesta:number,
-    imagen:string,
+    imagen?:string,
 }
 
 export interface ChatModel {
@@ -14,5 +14,6 @@ export interface ChatModel {
     id_usuario_creador:number,
     id_usuario_respuesta:number,
     ultimo_mensaje?:string,
-    imagen:string,
+    timestamp:string
+    imagen?:string,
 }

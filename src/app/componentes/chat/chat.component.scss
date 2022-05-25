@@ -1,18 +1,19 @@
 * {
-    box-sizing: border-box;
-    height: 100%;
+    //box-sizing: border-box;
+    
     margin: 0;
     padding: 0;
 }
 .container {
-    position: relative;
-    width: 100%;
+    //position: absolute;
+    margin: 0.2rem;
     height: 98vh;
     background-color: red;
 
 .parts {
-    
+    width: 115%;
     display: grid;
+    height: 98vh;
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: 10% 80% 10%;
     .info-chat {
