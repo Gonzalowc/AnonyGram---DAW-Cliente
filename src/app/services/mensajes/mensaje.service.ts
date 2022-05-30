@@ -1,15 +1,28 @@
 import { Injectable } from '@angular/core';
 import * as SockJS from 'sockjs-client';
-import { MensajeCompleto } from 'src/app/shared/models/mensajeModel';
+import { AllMensajesCompleto, MensajeCompleto } from 'src/app/shared/models/mensajeModel';
 import { CompatClient, Stomp } from '@stomp/stompjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class MensajeService {
   disabled = true;
   private stompClient!: CompatClient;
+  mensaje_response$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  baseUrl: string = environment.BASE_URL;
 
-  constructor(){}
+  constructor(private http:HttpClient){}
+
+
+  getAllMensajes(usuario: number): Observable<AllMensajesCompleto[]> {
+    let httpParams = new HttpParams();
+    httpParams.set('idUsuario',usuario);
+    return this.http.get<AllMensajesCompleto[]>(this.baseUrl + `/mensaje/all?idUsuario=${usuario}`)
+  }
+
 
   setConnected(connected: boolean) {
     this.disabled = !connected;
@@ -25,8 +38,8 @@ export class MensajeService {
     const _this = this;
     this.stompClient.connect({}, function (frame: string){
       _this.setConnected(true);
-      console.log("Connected: "+frame);
       _this.stompClient.subscribe("/topic/hi", function(mensajeResponse){
+        _this.mensaje_response$.next(JSON.parse(mensajeResponse.body));
         console.log("Respuesta: "+mensajeResponse.body);
       });
     });
@@ -40,9 +53,9 @@ export class MensajeService {
     console.log("Disconnected");
   }
 
-  sendMessage(mensaje:MensajeCompleto){
+  async sendMessage(mensaje:MensajeCompleto){
     if(this.disabled){
-      this.connect();
+      await this.connect();
     }
     console.log("mensaje: "+JSON.stringify(mensaje));
     if(mensaje!=null && mensaje != undefined){
@@ -53,5 +66,4 @@ export class MensajeService {
       );
     }
   }
-
 }

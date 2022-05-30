@@ -34,16 +34,29 @@ export class LoginComponent implements OnInit {
       this.password = this.loginForm.get("password")?.value;
 
       this.userService.loginUser({ "usuario": this.usuario, "password": this.password })
-        .subscribe((data) => {
-          if(data){
-            this.usuarioRespuesta = data;
-            saveData("sesion", JSON.stringify(this.usuarioRespuesta));
-            console.log(this.usuarioRespuesta);
-            this.router.navigate(['/chat']);
+        .subscribe({
+          next: (data) => {
+            if (data) {
+              this.usuarioRespuesta = data;
+              saveData("sesion", JSON.stringify(this.usuarioRespuesta));
+              console.log(this.usuarioRespuesta);
+              this.router.navigate(['/chat']);
+            }
+          }, error: (error) => {
+            console.log("No se ha podido logear el usuario");
           }
-        }, (error) => {
+        });
+
+
+
+        /*.subscribe(
+           (data) => {
+         
+        }, 
+        (error) => {
           console.log("No se ha podido logear el usuario");
-        })      
+        }
+        );    */
     }
     
   }

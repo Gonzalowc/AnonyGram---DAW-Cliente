@@ -1,8 +1,15 @@
+$azul-oscuro: #4E7D96;
+$azul: #9FC9DD;
+$azul-09: rgb(159, 201,221, 0.7);
+$azul-claro: #E3EDF2;
+$naranja: #FF844B;
+$marino: #0a0d25;
+
 .example-card {
   display: flex;
     border-radius: 0px 0px 15px 0px;
     max-width: 100%;
-    background-color: gray;
+    background-color: $azul-oscuro;
     overflow: hidden;
     -webkit-border-radius: 0px 0px 15px 0px;
     -moz-border-radius: 0px 0px 15px 0px;

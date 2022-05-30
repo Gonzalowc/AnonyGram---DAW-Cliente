@@ -1,16 +1,17 @@
 <div id="mensajes" >
     <div class="wrapper" *ngFor="let mensaje of mensajesChat">
-        <div class="wrapper-izq" *ngIf="mensaje.id_usuario == usuarioLogged.id_usuario">
+        <div class="wrapper-izq" *ngIf="mensaje.id_usuario != usuarioLogged.id_usuario">
             <div class="mensaje-izq">
                 <span>{{mensaje.mensaje}}</span>
             </div>
         </div>
-        <div class="wrapper-der" *ngIf="mensaje.id_usuario != usuarioLogged.id_usuario">
-            <div class="mensaje-der">
+        <div class="wrapper-der" (click)="setScrollDown()" *ngIf="mensaje.id_usuario == usuarioLogged.id_usuario">
+            <div class="mensaje-der" >
                 <span>{{mensaje.mensaje}}</span>
             </div>
         </div>
     </div>
-</div>
+    <div id="scrollDown"></div>
+</div> 
     
     

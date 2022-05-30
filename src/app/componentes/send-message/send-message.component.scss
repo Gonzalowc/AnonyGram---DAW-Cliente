@@ -1,3 +1,10 @@
+$azul-oscuro: #4E7D96;
+$azul: #9FC9DD;
+$azul-09: rgb(159, 201,221, 0.7);
+$azul-claro: #E3EDF2;
+$naranja: #FF844B;
+$naranja-03: #ff844bce;
+$marino: #0a0d25;
 form {
     width: 100%;
     height: 100%;
@@ -23,10 +30,12 @@ form {
     
     .send {
         width: 4rem;
-        background-color: purple;
+        background-color: $azul-oscuro;
+        color: $naranja;
         border: 0;
         &:hover{
-            background-color: green;
+            background-color: $azul;
+            color: $marino;
             cursor: pointer;
         }
     }

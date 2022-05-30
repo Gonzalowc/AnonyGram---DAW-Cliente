@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { ChatCompleto } from 'src/app/shared/models/chatModel';
 import { getData } from '../chat/chat.component';
@@ -10,17 +11,26 @@ import { getData } from '../chat/chat.component';
 })
 export class SearchChatComponent implements OnInit {
   id_usuario!:any;
-  @Output() nuevoChat: EventEmitter<ChatCompleto> = new EventEmitter<ChatCompleto>();
-  constructor(private chatService:ChatService) { }
+  isChecked:boolean = false;
+  checkBoxForm!: FormGroup;
+  @Output() nuevoChat: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(private chatService:ChatService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.id_usuario = JSON.parse(getData("sesion")).id_usuario;
+    this.checkBoxForm = this.fb.group({
+      checkbox: [false],
+    });
   }
 
   buscarChat() {
-    console.log("Usuario: "+this.id_usuario)
-    this.chatService.sendMessage({id_usuario: this.id_usuario});
-    this.nuevoChat.emit(this.chatService.ChatResponse);
-   }
+    this.nuevoChat.emit(true);
+    this.isChecked = true;
+  }
+  click() {
+    if (!this.isChecked) {
+      this.buscarChat();
+    }
+  }
 
 }

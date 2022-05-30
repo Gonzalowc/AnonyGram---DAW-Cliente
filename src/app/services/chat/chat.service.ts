@@ -1,21 +1,38 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CompatClient, Stomp } from '@stomp/stompjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import { ChatCompleto } from 'src/app/shared/models/chatModel';
-import { MensajeCompleto } from 'src/app/shared/models/mensajeModel';
+import { UsuarioRegister, UsuarioCompleto } from 'src/app/shared/models/usuarioModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  disabled = true;
+  connected = true;
   ChatResponse!:ChatCompleto;
   private stompClient!: CompatClient;
+  chat_response$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  
+  private baseUrl:string = environment.BASE_URL;
+  private httpOptions = {
+    headers: new HttpHeaders({ 
+      'Access-Control-Allow-Origin':'*',
+      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+    })}
 
-  constructor(){}
+  constructor(private http:HttpClient, private header:HttpClient) { }
+
+  getAllChats(usuario: number): Observable<ChatCompleto[]> {
+    let httpParams = new HttpParams();
+    httpParams.set('idUsuario',usuario);
+    return this.http.get<ChatCompleto[]>(this.baseUrl + `/chat/all?idUsuario=${usuario}`, {params: httpParams})
+  }
 
   setConnected(connected: boolean) {
-    this.disabled = !connected;
+    this.connected = !connected;
   }
 
   connect() {
@@ -26,9 +43,9 @@ export class ChatService {
     this.stompClient.connect({}, function (frame: string){
       _this.setConnected(true);
       console.log("Connected: "+frame);
-      _this.stompClient.subscribe("/topic/newChat", (mensajeResponse) =>{
-        console.log("Respuesta: "+mensajeResponse.body);
-        _this.ChatResponse = JSON.parse(mensajeResponse.body);
+      _this.stompClient.subscribe("/topic/newChat", (chatResponse) =>{
+        console.log("Respuesta: "+chatResponse.body);
+        _this.chat_response$.next(JSON.parse(chatResponse.body));
         _this.disconnect();
       });
     });
@@ -42,16 +59,13 @@ export class ChatService {
     console.log("Disconnected");
   }
 
-  sendMessage(mensaje:any){
-    if(this.disabled){
-      this.connect();
-    }
-    console.log("mensaje: "+mensaje);
-    if(mensaje!=null && mensaje != undefined){
+  createNewChat(chat:any){
+    console.log("chat: "+chat);
+    if(chat!=null && chat != undefined){
       this.stompClient.send(
         '/gkz/newChat',
         {},
-        JSON.stringify(mensaje)
+        JSON.stringify(chat)
       );
     }
   }

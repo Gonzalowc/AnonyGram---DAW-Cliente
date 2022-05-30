@@ -1,1 +1,10 @@
-<div (click)="buscarChat();">Nuevo Chat</div>
+<div class="texto pointer" *ngIf="!isChecked" (click)="click();">Buscar nuevo chat</div>
+<div class="texto" *ngIf="isChecked">Buscando nuevo chat</div>
+<form [formGroup]="checkBoxForm" *ngIf="!isChecked" (click)="click();">
+    <label for="checkbox" class="toggle pointer" >
+        <input type="checkbox" name="checkbox" id="checkbox" formControlName="checkbox">
+        <span class="ball"></span>
+        <span class="noCheck">X</span>
+        <span class="check">V</span>
+    </label>
+</form>

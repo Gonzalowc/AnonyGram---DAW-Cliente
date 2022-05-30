@@ -1,3 +1,11 @@
+$azul-oscuro: #4E7D96;
+$azul: #9FC9DD;
+$azul-09: rgb(159, 201,221, 0.7);
+$azul-claro: #E3EDF2;
+$naranja: #FF844B;
+$naranja-03: #ff844bce;
+$marino: #0a0d25;
+
 .chat {
   position: static;
   width: 35%;
@@ -17,12 +25,16 @@
 
   width: 100%;
   height: 100%;
-  background-color: beige !important;
+  background-color: $azul-claro !important;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 3px;
+
+  #scrollDown {
+    scroll-behavior: smooth;
+  }
 }
 
 .wrapper {
@@ -57,7 +69,8 @@
       text-align: justify;
       text-justify: inter-word;
 
-      background: #B1DEA9;
+      background-color: $naranja-03;
+
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 25px 25px 5px 25px;
     }
@@ -83,7 +96,7 @@
       height: fit-content;
       text-align: justify;
       text-justify: inter-word;
-      background: #B1DEA9;
+      background: $azul;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 5px 25px 25px 25px;
     }

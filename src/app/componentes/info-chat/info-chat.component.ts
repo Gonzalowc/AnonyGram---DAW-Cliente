@@ -18,6 +18,7 @@ export class InfoChatComponent implements OnInit {
   }
 
   openChat(dataChat: ChatModel){
+    console.log(dataChat);
     this.selectChat.emit(dataChat);
   }
 }

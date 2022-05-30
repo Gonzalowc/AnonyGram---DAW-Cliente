@@ -1,9 +1,9 @@
 <div class="container">
     <div class="parts">
-        <app-search-chat class="searchChat"></app-search-chat>
+        <app-search-chat class="searchChat" (nuevoChat)="createChat($event);"></app-search-chat>
         <app-info-user [user]="chatSelected" class="infoUser"></app-info-user>
         <app-info-chat [dataChats]="infoChat" (selectChat)="openChat($event)" class="info-chat"></app-info-chat>
         <app-mensajes [selectedChat]="chatSelected" [mensajesChat]="mensajes" class="mensajes"></app-mensajes>
-        <app-send-message [idChat]="chatSelected?.id_chat" [idUsuario]="userLogging?.id_usuario" class="sendMensajes"></app-send-message>
+        <app-send-message [idChat]="chatSelected?.id_chat" [idUsuario]="userLogging?.id_usuario" (mensajeReceived)="getMessage($event)" class="sendMensajes"></app-send-message>
     </div>
 </div>

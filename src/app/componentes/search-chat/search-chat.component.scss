@@ -1,1 +1,67 @@
-// Rellenar
+$azul-oscuro: #4E7D96;
+$azul: #9FC9DD;
+$azul-09: rgb(159, 201,221, 0.7);
+$azul-claro: #E3EDF2;
+$naranja: #FF844B;
+$naranja-03: #ff844bce;
+$marino: #0a0d25;
+
+* {
+    color: $azul-claro;
+}
+
+.texto{
+    margin-left: 15%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+#checkbox {
+    display: none;
+    
+}
+
+.toggle {
+    display: block;
+    width: 60px;
+    height: 31px;
+    border: 2px solid $naranja-03;
+    border-radius: 30px;
+    position: relative;
+    margin-left: 25%;
+}
+
+.ball, .check, .noCheck {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ball {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: $naranja;
+    border-radius: 50%;
+    left: 1px;
+    z-index: 10;
+    transition: transform .5s ease-in-out;
+}
+
+.check {
+    right: 5px;
+}
+
+.noCheck {
+    left: 5px;
+}
+
+#checkbox:checked + .ball {
+    transform: translate(28.5px, -50%);
+    -webkit-transform: translate(28.5px, -50%);
+    -moz-transform: translate(28.5px, -50%);
+    -ms-transform: translate(28.5px, -50%);
+    -o-transform: translate(28.5px, -50%);
+}

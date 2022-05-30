@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 import { ChatModel } from 'src/app/shared/models/chatModel';
 import { MensajeCompleto } from 'src/app/shared/models/mensajeModel';
 import { UsuarioCompleto } from 'src/app/shared/models/usuarioModel';
+import { getData } from '../chat/chat.component';
 
 @Component({
   selector: 'app-mensajes',
@@ -16,12 +17,6 @@ export class MensajesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.usuarioLogged = {
-      "id_usuario": 1
-       ,"activo": true
-       ,"name": "Gonzalo"
-       ,"rol": "User"
-       ,"usuario": "Gonxalosfc"
-    }
+    this.usuarioLogged = JSON.parse(getData("sesion"));
   }
 }

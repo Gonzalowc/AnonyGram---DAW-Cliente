@@ -5,3 +5,8 @@ export interface MensajeCompleto {
     timestamp:Date,
     id_chat: number,
 }
+
+export interface AllMensajesCompleto {
+    idChat:number,
+    listMensajes?:MensajeCompleto[],
+}

@@ -36,14 +36,16 @@ export class RegisterComponent implements OnInit {
     this.name = this.registerForm.get(["name"])?.value;
     this.password = this.registerForm.get("password")?.value;
 
-    this.userService.registerUser({"usuario": this.usuario, "name": this.name, "password": this.password })
-      .subscribe((data) => {
-        console.log("Subscribe: > "+data)
-        if(data!=null){
-          this.router.navigate(['/login']);
+    this.userService.registerUser({ "usuario": this.usuario, "name": this.name, "password": this.password })
+      .subscribe({
+        next: (data) => {
+          console.log("Subscribe: > " + data)
+          if (data != null) {
+            this.router.navigate(['/login']);
+          }
+        }, error: (error) => {
+          console.log("No se ha podido registrar el usuario");
         }
-      }, (error) => {
-        console.log("No se ha podido registrar el usuario");
       })
   }
 
