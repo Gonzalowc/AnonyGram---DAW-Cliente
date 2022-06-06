@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { UsuarioCompleto } from 'src/app/shared/models/usuarioModel';
 import { saveData } from '../chat/chat.component';
@@ -10,22 +10,31 @@ import { saveData } from '../chat/chat.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  clicked:boolean = false;
+  clicked: boolean = false;
   usuario!: string;
   password!: string;
-  usuarioSolicitud!:UsuarioCompleto;
+  error!: string;
+  usuarioSolicitud!: UsuarioCompleto;
   loginForm!: FormGroup;
   usuarioRespuesta: any;
-  constructor(private userService: UsuarioService, private fb: FormBuilder, private router: Router) {
+  constructor(private userService: UsuarioService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
     this.createForm(fb);
   }
-  createForm(fb:FormBuilder) {
+  createForm(fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      usuario: ['', Validators.required ],
-      password: ['', Validators.required ],
+      usuario: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
   ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        if (params['error']) {
+          this.error = params['error'];
+        }
+        console.log(this.error);
+      }
+      );
   }
 
   login() {
@@ -40,28 +49,17 @@ export class LoginComponent implements OnInit {
               this.usuarioRespuesta = data;
               saveData("sesion", JSON.stringify(this.usuarioRespuesta));
               console.log(this.usuarioRespuesta);
-              this.router.navigate(['/chat']);
             }
+            this.router.navigate(['/chat']);
           }, error: (error) => {
             console.log("No se ha podido logear el usuario");
           }
         });
-
-
-
-        /*.subscribe(
-           (data) => {
-         
-        }, 
-        (error) => {
-          console.log("No se ha podido logear el usuario");
-        }
-        );    */
     }
-    
+
   }
 
-  setMessageErrorOn(state:boolean){
+  setMessageErrorOn(state: boolean) {
     this.clicked = state;
   }
 

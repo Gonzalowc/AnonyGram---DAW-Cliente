@@ -1,27 +1,25 @@
-$azul-oscuro: #4E7D96;
-$azul: #9FC9DD;
-$azul-claro: #E3EDF2;
-$naranja: #FF844B;
-$marino: #0a0d25;
-
-
+@import '../../../global';
 * {
-    //box-sizing: border-box;
+    box-sizing: border-box;
     color:$marino;
     margin: 0;
     padding: 0;
+    
 }
-.container {
-    //position: absolute;
-    margin: 0.2rem;
-    height: 98vh;
-
+body, html {
+    overflow: hidden !important;
+}
 .parts {
-    width: 115%;
+    margin-left: 1%;
+    margin-top: 1vh;
+    width: 98%;
     display: grid;
     height: 98vh;
+    justify-items: stretch;
+    align-items: stretch;
     grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: 10% 80% 10%;
+    grid-template-rows: 1fr 8fr 1fr;
+    background-color: $azul-claro;
     .info-chat {
         z-index: 3;
         grid-column: 1 / 3;
@@ -29,6 +27,7 @@ $marino: #0a0d25;
         width: 100%;
         height: 100%;
         background-color: $azul;
+        overflow-y: auto;
     }
     .mensajes {
         z-index: 2;
@@ -36,7 +35,9 @@ $marino: #0a0d25;
         grid-row: 2;
         width: 100%;
         height: 100%;
-        background-color: green;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        scroll-margin-block-end: 5px;
     }
     .sendMensajes {
         z-index: 1;
@@ -63,5 +64,4 @@ $marino: #0a0d25;
         height: 100%;
         background-color: $marino;
     }
-}
 }

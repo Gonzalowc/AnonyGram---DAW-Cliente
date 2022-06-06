@@ -1,0 +1,55 @@
+<table mat-table [dataSource]="listaChats" *ngIf="datos" class="sat-elevation-z8 w-100">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell class="text-left" *matCellDef="let chat">
+            <span *ngIf="chat.activo">{{chat.id_chat}}</span>
+            <span *ngIf="!chat.activo" class="off">{{chat.id_chat}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="nombreCreador">
+        <th mat-header-cell *matHeaderCellDef>Nombre Chat Creador</th>
+        <td mat-cell class="text-left" *matCellDef="let chat">
+            <span *ngIf="chat.activo">{{chat.nombre_chat_creador}}</span>
+            <span *ngIf="!chat.activo" class="off">{{chat.nombre_chat_creador}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="nombreRespuesta">
+        <th mat-header-cell *matHeaderCellDef>Nombre Chat Receptor</th>
+        <td mat-cell class="text-left" *matCellDef="let chat">
+            <span *ngIf="chat.activo">{{chat.nombre_chat_respuesta}}</span>
+            <span *ngIf="!chat.activo" class="off">{{chat.nombre_chat_respuesta}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="imagen">
+        <th mat-header-cell *matHeaderCellDef>imagen</th>
+        <td mat-cell class="text-left" *matCellDef="let chat">
+            <span *ngIf="chat.activo"><!-- --></span>
+            <span *ngIf="!chat.activo" class="off"><!-- --></span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="mensajes">
+        <th mat-header-cell *matHeaderCellDef>Mensajes</th>
+        <td mat-cell class="text-left" *matCellDef="let chat">
+            <span *ngIf="chat.activo">{{chat.cantidad_mensajes}}</span>
+            <span *ngIf="!chat.activo" class="off">{{chat.cantidad_mensajes}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="creacion">
+        <th mat-header-cell *matHeaderCellDef>Creación</th>
+        <td mat-cell class="text-left" *matCellDef="let chat">
+            <span *ngIf="chat.activo">{{chat.fecha_creacion | date: 'shortDate'}}</span>
+            <span class="off" *ngIf="!chat.activo">{{chat.fecha_creacion | date: 'shortDate'}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell class="text-left" *matCellDef="let chat">
+            <fa-icon class="mr-4" [icon]="['fas', 'user-injured']" (click)="openDialogEdit(chat);" *ngIf="chat.activo"></fa-icon>
+            <fa-icon [icon]="['fas', 'ban']" class="red" *ngIf="!chat.activo"></fa-icon>
+            <fa-icon [icon]="['fas', 'heart-pulse']" class="green" *ngIf="chat.activo"></fa-icon>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<h1 *ngIf="!datos">No hay Chats para mostrar</h1>

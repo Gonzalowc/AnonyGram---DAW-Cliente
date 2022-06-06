@@ -1,0 +1,62 @@
+<table mat-table [dataSource]="listaUsuarios" *ngIf="datos" class="sat-elevation-z8 w-100">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell class="text-left" *matCellDef="let usuario">
+            <span *ngIf="usuario.activo">{{usuario.id_usuario}}</span>
+            <span *ngIf="!usuario.activo" class="off">{{usuario.id_usuario}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell class="text-left" *matCellDef="let usuario">
+            <span *ngIf="usuario.activo">{{usuario.name}}</span>
+            <span *ngIf="!usuario.activo" class="off">{{usuario.name}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell class="text-left" *matCellDef="let usuario">
+            <span *ngIf="usuario.activo">{{usuario.usuario}}</span>
+            <span *ngIf="!usuario.activo" class="off">{{usuario.usuario}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="rol">
+        <th mat-header-cell *matHeaderCellDef>Rol</th>
+        <td mat-cell class="text-left" *matCellDef="let usuario">
+            <span *ngIf="usuario.activo">{{usuario.rol}}</span>
+            <span *ngIf="!usuario.activo" class="off">{{usuario.rol}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="registro">
+        <th mat-header-cell *matHeaderCellDef>Fecha Registro</th>
+        <td mat-cell class="text-left" *matCellDef="let usuario">
+            <span *ngIf="usuario.activo">{{usuario.registro | date: 'shortDate'}}</span>
+            <span *ngIf="!usuario.activo" class="off">{{usuario.registro | date: 'shortDate'}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="buscando">
+        <th mat-header-cell *matHeaderCellDef>Buscando chat</th>
+        <td mat-cell class="text-left" *matCellDef="let usuario">
+            <span *ngIf="!usuario.activo">
+                <span class="off" *ngIf="!usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']"></fa-icon></span>
+                <span class="off" *ngIf="usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']"></fa-icon></span>
+            </span>
+            <span *ngIf="usuario.activo">
+                <span class="red" *ngIf="!usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']" (click)="changeSearchChat(usuario);"></fa-icon></span>
+                <span class="green" *ngIf="usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']" (click)="changeSearchChat(usuario);"></fa-icon></span>
+            </span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell class="text-left" *matCellDef="let usuario">
+
+            <fa-icon class="mr-4" [icon]="['fas', 'user-injured']" (click)="openDialogEdit(usuario);" *ngIf="usuario.activo"></fa-icon>
+            <fa-icon [icon]="['fas', 'ban']" class="red" *ngIf="!usuario.activo" (click)="changeActive(usuario)"></fa-icon>
+            <fa-icon [icon]="['fas', 'heart-pulse']" class="green" *ngIf="usuario.activo" (click)="changeActive(usuario)"></fa-icon>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<h1 *ngIf="!datos">No hay Usuarios para mostrar</h1>

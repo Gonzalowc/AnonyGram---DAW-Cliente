@@ -6,6 +6,7 @@ export interface UsuarioCompleto {
     rol: string,
     usuario: string,
     password?: string,
+    registro:Date,
 }
 
 export interface UsuarioRegister {
@@ -17,4 +18,12 @@ export interface UsuarioRegister {
 export interface UsuarioLogin {
     usuario:string,
     password:string
+}
+
+export interface UsuarioStadistics {
+    usuarios_totales:number,
+    usuarios_activos:number,
+    usuarios_inactivos:number,
+    usuarios_registro_hoy:number,
+    usuarios_buscando_chat:number,
 }

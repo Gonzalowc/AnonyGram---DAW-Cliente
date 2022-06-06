@@ -4,7 +4,6 @@ import { CompatClient, Stomp } from '@stomp/stompjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import { ChatCompleto } from 'src/app/shared/models/chatModel';
-import { UsuarioRegister, UsuarioCompleto } from 'src/app/shared/models/usuarioModel';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -23,12 +22,12 @@ export class ChatService {
       "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
     })}
 
-  constructor(private http:HttpClient, private header:HttpClient) { }
+  constructor(private http:HttpClient) { }
 
   getAllChats(usuario: number): Observable<ChatCompleto[]> {
     let httpParams = new HttpParams();
     httpParams.set('idUsuario',usuario);
-    return this.http.get<ChatCompleto[]>(this.baseUrl + `/chat/all?idUsuario=${usuario}`, {params: httpParams})
+    return this.http.get<ChatCompleto[]>(this.baseUrl + `/chat/all?idUsuario=${usuario}`, {params: httpParams});
   }
 
   setConnected(connected: boolean) {
@@ -68,5 +67,9 @@ export class ChatService {
         JSON.stringify(chat)
       );
     }
+  }
+
+  getAllChatsAdmin(): Observable<ChatCompleto[]>{
+    return this.http.get<ChatCompleto[]>(this.baseUrl + "/admin/chat/allChats");
   }
 }

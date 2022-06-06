@@ -9,21 +9,30 @@ import { environment } from 'src/environments/environment';
 })
 
 export class UsuarioService {
-  private baseUrl:string = environment.BASE_URL;
-  private usuario!:UsuarioCompleto;
+  private baseUrl: string = environment.BASE_URL;
+  private usuario!: UsuarioCompleto;
   private httpOptions = {
-    headers: new HttpHeaders({ 
-      'Access-Control-Allow-Origin':'*',
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
       "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-    })}
+    })
+  }
 
-  constructor(private http:HttpClient, private header:HttpClient) { }
+  constructor(private http: HttpClient, private header: HttpClient) { }
 
   registerUser(usuario: UsuarioRegister): Observable<UsuarioCompleto> {
-    return this.http.post<UsuarioCompleto>(this.baseUrl + '/usuario/register', usuario)
+    return this.http.post<UsuarioCompleto>(this.baseUrl + '/usuario/register', usuario);
   }
 
   loginUser(usuario: UsuarioLogin): Observable<UsuarioCompleto> {
-    return this.http.post<UsuarioCompleto>(this.baseUrl + '/usuario/login', usuario)
+    return this.http.post<UsuarioCompleto>(this.baseUrl + '/usuario/login', usuario);
+  }
+
+  getAllUser(): Observable<UsuarioCompleto[]> {
+    return this.http.get<UsuarioCompleto[]>(this.baseUrl + '/admin/usuario/allUsuarios');
+  }
+
+  getUser(idUsuario:number): Observable<UsuarioCompleto> {
+    return this.http.get<UsuarioCompleto>(this.baseUrl+ `/usuario?idUsuario=${idUsuario}`)
   }
 }

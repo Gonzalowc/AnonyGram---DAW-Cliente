@@ -7,7 +7,9 @@ export interface ChatCompleto {
     id_usuario_creador:number,
     id_usuario_respuesta:number,
     imagen?:string,
-    ultimo_mensaje?:string
+    ultimo_mensaje?:string,
+    cantidad_mensajes?:number
+    activo?:boolean
 }
 export interface ChatModel {
     id_chat: number,
@@ -18,4 +20,13 @@ export interface ChatModel {
     ultimo_mensaje?:string,
     timestamp:string
     imagen?:string,
+}
+
+export interface ChatStadistics{
+    usuarios_buscando_chat?:number,
+    chats_totales:number,
+    chats_activos:number,
+    chats_inactivos:number,
+    chats_hoy:number,
+    chats_sin_comenzar:number,
 }

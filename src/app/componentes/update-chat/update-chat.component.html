@@ -1,0 +1,55 @@
+<mat-dialog-content class="modal w-75 mt-5 m-5 h-100 clearfix" tabindex="-1" role="dialog">
+    <h3 mat-dialog-title class="center">
+        <fa-icon [icon]="['fas', 'user-injured']"></fa-icon> Modificar Usuario
+    </h3>
+    <form [formGroup]="updateChat" novalidate>
+        <div class="form-row form-group">
+            <div class="column-half">
+                <label>Id</label>
+                <input type="number" class="form-control" formControlName="id" readonly>
+            </div>
+            <div class="column-half">
+                <label>Registro</label>
+                <input type="text" class="form-control" formControlName="registro" readonly>
+            </div>
+        </div>
+        <div class="form-row form-group">
+            <div class="column-half">
+                <label>Nombre Chat Creador</label>
+                <input type="text" class="form-control" formControlName="ncreador">
+                <!--<div *ngIf="updateChat.controls['ncreador'].invalid && (updateChat.controls['ncreador'].dirty || updateChat.controls['ncreador'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="updateChat.controls['ncreador'].errors.required">
+                        <strong>Nombre Chat Creador</strong> is required.
+                    </div>
+                </div>-->
+            </div>
+            <div class="column-half">
+                <label>Nombesta</label>
+                <input type="text" class="form-control" formControlName="nrespuesta">
+                <!--<div *ngIf="updateChat.controls['nrespuesta'].invalid && (updateChat.controls['nrespuesta'].dirty || updateChat.controls['nrespuesta'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="updateChat.controls['nrespuesta'].errors.required">
+                        <strong>Nombre Chat Respuesta</strong> is required.
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div class="form-row form-group">
+            <div class="column-half">
+                <label>Usuario Creador</label>
+                <input type="text" class="form-control" formControlName="icreador" readonly>
+            </div>
+            <div class="column-half">
+                <label>Usuario Receptor</label>
+                <input type="text" class="form-control" formControlName="irespuesta" readonly>
+            </div>
+        </div>
+    </form>
+    <div mat-dialog-actions>
+        <button type="button" class="btn btn-light m-3" mat-button (click)="onNoClick()"
+            cdkFocusInitial>Cancelar</button>
+        <button type="button" class="btn btn-danger m-3" mat-button (click)="updateChatDB()"
+            [mat-dialog-close]="data">Actualizar</button>
+    </div>
+</mat-dialog-content>

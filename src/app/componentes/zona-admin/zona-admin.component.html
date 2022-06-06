@@ -1,0 +1,181 @@
+<div class="zona-admin">
+    <nav class="navbar">
+        <div class="group">
+            <a class="enlace title"><fa-icon [icon]="['fas', 'square-poll-vertical']"></fa-icon> Dashboard</a>
+        </div>
+        <div class="group">
+            <a class="enlace"><fa-icon [icon]="['fas', 'user-group']"></fa-icon> Usuarios</a>
+            <a class="enlace"><fa-icon [icon]="['fas', 'diagram-project']"></fa-icon> Chats</a>
+            <a class="enlace"><fa-icon [icon]="['fas', 'comments']"></fa-icon> Mensajes</a>
+            <span class="enlace">
+                <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon> <input [(ngModel)]="dateSelected"
+                  type="date"
+                  name="date"
+                  required="required"
+                  (change)="openByDate()"
+                  style="margin-left: 5px;"
+                />
+            </span>
+            <a class="enlace" (click)="openByDate()"><fa-icon [icon]="['fas', 'arrow-rotate-left']"></fa-icon></a>
+        </div>
+    </nav>
+    <div class="item" (click)="openUsuarios();">
+        <fa-icon [icon]="['fas', 'user-group']"></fa-icon> Usuarios <fa-icon [icon]="['fas', 'user-group']"></fa-icon>
+        <div class="flexbox">
+            <div class="flex-item">
+                <div class="content" *ngIf="usuarioStadistic">
+                    <fa-icon [icon]="['fas', 'globe']"></fa-icon>
+                    <p>{{usuarioStadistic.usuarios_totales}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'globe']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="usuarioStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
+                    <p>{{usuarioStadistic.usuarios_activos}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="usuarioStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
+                    <p>{{usuarioStadistic.usuarios_inactivos}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="usuarioStadistic">
+                    <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
+                    <p>{{usuarioStadistic.usuarios_registro_hoy}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="usuarioStadistic">
+                    <fa-icon [icon]="['fas', 'circle-pause']"></fa-icon>
+                    <p>{{usuarioStadistic.usuarios_buscando_chat}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'circle-pause']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item" (click)="openChats();">
+        <fa-icon [icon]="['fas', 'diagram-project']"></fa-icon> Chat <fa-icon [icon]="['fas', 'diagram-project']"></fa-icon>
+        <div class="flexbox">
+            <div class="flex-item">
+                <div class="content" *ngIf="chatStadistic">
+                    <fa-icon [icon]="['fas', 'globe']"></fa-icon>
+                    <p>{{chatStadistic.chats_totales}}</p>
+                </div>
+                <div class="content" *ngIf="!chatStadistic">
+                    <fa-icon [icon]="['fas', 'globe']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="chatStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
+                    <p>{{chatStadistic.chats_activos}}</p>
+                </div>
+                <div class="content" *ngIf="!chatStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="chatStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
+                    <p>{{chatStadistic.chats_inactivos}}</p>
+                </div>
+                <div class="content" *ngIf="!chatStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="chatStadistic">
+                    <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon>
+                    <p>{{chatStadistic.chats_hoy}}</p>
+                </div>
+                <div class="content" *ngIf="!chatStadistic">
+                    <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="chatStadistic">
+                    <fa-icon [icon]="['fas', 'comment-slash']"></fa-icon>
+                    <p>{{chatStadistic.chats_sin_comenzar}}</p>
+                </div>
+                <div class="content" *ngIf="!chatStadistic">
+                    <fa-icon [icon]="['fas', 'comment-slash']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item" (click)="openMensajes();">
+        <fa-icon [icon]="['fas', 'comments']"></fa-icon> Mensajes <fa-icon [icon]="['fas', 'comments']"></fa-icon>
+        <div class="flexbox">
+            <div class="flex-item">
+                <div class="content" *ngIf="mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'globe']"></fa-icon>
+                    <p>{{mensajeStadistic.mensajes_totales}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'globe']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
+                    <p>{{mensajeStadistic.mensajes_activos}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
+                    <p>{{mensajeStadistic.mensajes_inactivos}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon>
+                    <p>{{mensajeStadistic.mensajes_hoy}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic">
+                    <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-3-row item">
+        <app-lista-usuarios *ngIf="abrirUsuario"></app-lista-usuarios>
+        <app-lista-chats *ngIf="abrirChat"></app-lista-chats>
+    </div>
+</div>

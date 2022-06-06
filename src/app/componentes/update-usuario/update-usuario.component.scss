@@ -1,0 +1,33 @@
+.modal, .card {
+    background-color: white;
+}
+
+.modal {
+    height: initial;
+}
+
+.form-group {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.form-row {
+    width: 100%;
+}
+
+.column-half, .column-full {
+    float: left;
+    position: relative;
+    padding: 0.65rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+.column-half{
+    width: 50%;
+}
+
+.clearflix:after {
+    content: "";
+    display: table;
+    clear: both;
+}

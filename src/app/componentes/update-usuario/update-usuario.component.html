@@ -1,0 +1,52 @@
+<mat-dialog-content class="modal w-75 mt-5 m-5 h-100 clearfix" tabindex="-1" role="dialog">
+    <h3 mat-dialog-title class="center">
+        <fa-icon [icon]="['fas', 'user-injured']"></fa-icon> Modificar Usuario
+    </h3>
+    <form [formGroup]="updateUsuario" novalidate>
+        <div class="form-row">
+            <div class="column-half">
+                <label>Id</label>
+                <input type="number" class="form-control" formControlName="id" readonly>
+            </div>
+            <div class="column-half">
+                <label>Registro</label>
+                <input type="text" class="form-control" formControlName="registro" readonly>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="column-half">
+                <label>Nombre</label>
+                <input type="text" class="form-control" formControlName="name">
+                <div *ngIf="updateUsuario.controls['name'].invalid && (updateUsuario.controls['name'].dirty || updateUsuario.controls['name'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="updateUsuario.controls['name'].errors.required">
+                        <strong>Nombre</strong> is required.
+                    </div>
+                </div>
+            </div>
+            <div class="column-half">
+                <label>Usuario</label>
+                <input type="text" class="form-control" formControlName="usuario">
+                <div *ngIf="updateUsuario.controls['usuario'].invalid && (updateUsuario.controls['usuario'].dirty || updateUsuario.controls['usuario'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="updateUsuario.controls['usuario'].errors.required">
+                        <strong>Usuario</strong> is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row form-group">
+            <label>Rol</label>
+            <select class="form-control" formControlName="rol">
+                <option value="USER">Usuario</option>
+                <option value="ADMIN">Administrador</option>
+            </select>
+        </div>
+    </form>
+    <div mat-dialog-actions>
+        <button type="button" class="btn btn-light m-3" mat-button (click)="onNoClick()"
+            cdkFocusInitial>Cancelar</button>
+        <button type="button" class="btn btn-danger m-3" mat-button (click)="updateUsuarioDB()"
+            [mat-dialog-close]="data">Actualizar</button>
+    </div>
+</mat-dialog-content>

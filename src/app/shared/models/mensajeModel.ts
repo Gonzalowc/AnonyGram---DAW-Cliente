@@ -10,3 +10,10 @@ export interface AllMensajesCompleto {
     idChat:number,
     listMensajes?:MensajeCompleto[],
 }
+
+export interface MensajeStadistics {
+    mensajes_totales:number,
+    mensajes_activos:number,
+    mensajes_inactivos:number,
+    mensajes_hoy:number,
+}

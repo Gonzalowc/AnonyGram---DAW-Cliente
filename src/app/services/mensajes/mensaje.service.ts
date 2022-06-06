@@ -53,9 +53,9 @@ export class MensajeService {
     console.log("Disconnected");
   }
 
-  async sendMessage(mensaje:MensajeCompleto){
+  sendMessage(mensaje:MensajeCompleto){
     if(this.disabled){
-      await this.connect();
+      this.connect();
     }
     console.log("mensaje: "+JSON.stringify(mensaje));
     if(mensaje!=null && mensaje != undefined){

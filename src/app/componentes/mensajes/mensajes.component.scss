@@ -1,18 +1,9 @@
-$azul-oscuro: #4E7D96;
-$azul: #9FC9DD;
-$azul-09: rgb(159, 201,221, 0.7);
-$azul-claro: #E3EDF2;
-$naranja: #FF844B;
-$naranja-03: #ff844bce;
-$marino: #0a0d25;
+@import '../../../_global.scss';
 
 .chat {
   position: static;
-  width: 35%;
-  height: 35px;
-  background-color: blue;
   left: 2px;
-  top: 1062px;
+  height: 100%;
   flex: none;
   order: 10;
   align-self: stretch;
@@ -21,14 +12,11 @@ $marino: #0a0d25;
 }
 
 #mensajes {
-  overflow-y: scroll;
-
   width: 100%;
-  height: 100%;
   background-color: $azul-claro !important;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   padding: 0px;
   gap: 3px;
 
