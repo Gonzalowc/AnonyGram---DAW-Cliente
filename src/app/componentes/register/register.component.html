@@ -5,14 +5,14 @@
         type="text"
         formControlName="usuario"
         name="username"
-        placeholder="username"
+        placeholder="Usuario"
         required="required"
         autocomplete="username"
       />
       <input
         type="text"
         formControlName="name"
-        name="username"
+        name="nombreCompleto"
         placeholder="Nombre Completo"
         required="required"
         autocomplete="Nombre Completo"
@@ -25,13 +25,8 @@
         required="required"
         autocomplete="current-password"
       />
-      <div class="alert alert-success" role="alert">
-        This is a success alert—check it out!
-      </div>
-      <div class="alert alert-danger" role="alert">
-        This is a danger alert—check it out!
-      </div>
-      <button type="button" [disabled]="registerForm.pristine || registerForm.invalid" (click)="register()">Register</button>
+      <button type="submit" [disabled]="registerForm.pristine || registerForm.invalid" (click)="register()">Register</button>
+      <button type="button" [routerLink]="['/login']">Login</button>
     </form>
       
     </div>

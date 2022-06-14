@@ -55,7 +55,6 @@ export class UpdateChatComponent implements OnInit {
   updateChatDB() {
     let nCreador = this.updateChat.get(["ncreador"])?.value;
     let nRespuesta = this.updateChat.get(["nrespuesta"])?.value;
-    console.log(nCreador+" -- "+nRespuesta)
     this.chatSelected.nombre_chat_creador = nCreador;
     this.chatSelected.nombre_chat_respuesta = nRespuesta;
     this.adminService.updateChat(this.chatSelected).subscribe({

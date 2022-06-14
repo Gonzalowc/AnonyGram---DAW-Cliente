@@ -1,0 +1,23 @@
+@import '../../../global';
+
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+
+td {
+    border-color: black !important;
+}
+
+.off {
+    color: $naranja;
+}
+
+div[mat-card-avatar] {
+    background-size: cover;
+}
+mat-card {
+    padding: 0;
+}

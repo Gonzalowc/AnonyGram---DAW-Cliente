@@ -1,5 +1,7 @@
+@import '../../../global';
+
 .modal, .card {
-    background-color: white;
+    background-color: $azul-claro;
 }
 
 .modal {
@@ -21,6 +23,7 @@
     padding: 0.65rem;
     width: 100%;
     box-sizing: border-box;
+    color: $azul-oscuro;
 }
 .column-half{
     width: 50%;
@@ -30,4 +33,31 @@
     content: "";
     display: table;
     clear: both;
+}
+
+input, select{
+    color: $naranja;
+}
+
+input:read-only{
+    color: $marino;
+    background-color: $azul;
+}
+
+input:focus:read-only{
+    background-color: $azul;
+    color: $azul-claro;
+    font-weight: lighter;
+}
+
+input:focus, select:focus{
+    background-color: $naranja-03;
+    color: $azul-oscuro;
+    font-weight: bold;
+}
+
+option {
+    background-color: $azul-oscuro;
+    color: $naranja;
+    font-weight: bold;
 }

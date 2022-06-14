@@ -41,9 +41,7 @@ export class ChatService {
     const _this = this;
     this.stompClient.connect({}, function (frame: string){
       _this.setConnected(true);
-      console.log("Connected: "+frame);
       _this.stompClient.subscribe("/topic/newChat", (chatResponse) =>{
-        console.log("Respuesta: "+chatResponse.body);
         _this.chat_response$.next(JSON.parse(chatResponse.body));
         _this.disconnect();
       });
@@ -59,7 +57,6 @@ export class ChatService {
   }
 
   createNewChat(chat:any){
-    console.log("chat: "+chat);
     if(chat!=null && chat != undefined){
       this.stompClient.send(
         '/gkz/newChat',

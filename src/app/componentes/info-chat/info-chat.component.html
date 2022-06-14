@@ -1,12 +1,25 @@
 
-<div  *ngFor="let data of dataChats">
+<div class="container"  *ngFor="let data of dataChats">
     <hr>
-    <mat-card (click)="openChat(data)" class="example-card">
+    <mat-card (click)="openChat(data)" class="example-card" *ngIf="data.activo">
         <mat-card-header>
-            <div mat-card-avatar *ngIf="data" class="example-header-image" style="background-image: url('{{data.imagen}}');"></div>
+            <div mat-card-avatar *ngIf="data && data.imagen" class="header-image" style="background-image: url('{{data.imagen}}');"></div>
+            <div mat-card-avatar *ngIf="data && !data.imagen" class="header-image" style="background-image: url('../../../assets/img/messages_fast.gif');"></div>
             <!--Titulo-->
             <mat-card-title *ngIf="data.nombre_chat">{{data.nombre_chat}}</mat-card-title>
-            <mat-card-title *ngIf="!data.nombre_chat"> Chat PRUEBA</mat-card-title>
+            <mat-card-title *ngIf="!data.nombre_chat"> -- Sin nombre -- </mat-card-title>
+            <!-- Ultimo Mensaje-->
+            <mat-card-subtitle *ngIf="data.ultimo_mensaje">{{data.ultimo_mensaje}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="!data.ultimo_mensaje">Sin mensajes</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <mat-card (click)="openChat(data)" class="example-card off" *ngIf="!data.activo">
+        <mat-card-header>
+            <div mat-card-avatar *ngIf="data && data.imagen" class="header-image" style="background-image: url('{{data.imagen}}');"></div>
+            <div mat-card-avatar *ngIf="data && !data.imagen" class="header-image" style="background-image: url('../../../assets/img/messages_fast.gif');"></div>
+            <!--Titulo-->
+            <mat-card-title *ngIf="data.nombre_chat">{{data.nombre_chat}}</mat-card-title>
+            <mat-card-title *ngIf="!data.nombre_chat"> -- Sin nombre -- </mat-card-title>
             <!-- Ultimo Mensaje-->
             <mat-card-subtitle *ngIf="data.ultimo_mensaje">{{data.ultimo_mensaje}}</mat-card-subtitle>
             <mat-card-subtitle *ngIf="!data.ultimo_mensaje">Sin mensajes</mat-card-subtitle>

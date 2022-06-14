@@ -1,13 +1,31 @@
 <div id="mensajes" >
-    <div class="wrapper" *ngFor="let mensaje of mensajesChat">
+    <div class="wrapper" *ngFor="let mensaje of mensajesChat" >
         <div class="wrapper-izq" *ngIf="mensaje.id_usuario != usuarioLogged.id_usuario">
-            <div class="mensaje-izq">
+            <div class="mensaje-izq" *ngIf="!mensaje.reported && mensaje.active">
                 <span>{{mensaje.mensaje}}</span>
             </div>
-        </div>
-        <div class="wrapper-der" (click)="setScrollDown()" *ngIf="mensaje.id_usuario == usuarioLogged.id_usuario">
-            <div class="mensaje-der" >
+            <div class="mensaje-izq reported-izq" *ngIf="mensaje.reported && mensaje.active">
                 <span>{{mensaje.mensaje}}</span>
+            </div>
+            <div class="mensaje-izq banned" *ngIf="mensaje.reported && !mensaje.active">
+                <span><i>Mensaje baneado</i></span>
+            </div>
+            <fa-icon *ngIf="!mensaje.reported" data-toggle="tooltip bs-tooltip-top" title=" Denunciar Mensaje " [icon]="['fas', 'triangle-exclamation']" class="red mr-4" (click)="banMensaje(mensaje);"></fa-icon>
+        </div>
+        <div class="wrapper-der" *ngIf="mensaje.id_usuario == usuarioLogged.id_usuario">
+            <fa-icon *ngIf="mensaje.active" data-toggle="tooltip bs-tooltip-top" title=" Quitar mensaje " [icon]="['fas', 'ban']" class="red mr-4" (click)="changeActive(mensaje);"></fa-icon>
+            <fa-icon *ngIf="!mensaje.active && !mensaje.reported" data-toggle="tooltip bs-tooltip-top" title=" Reactivar mensaje " [icon]="['fas', 'power-off']" class="red mr-4" (click)="changeActive(mensaje);"></fa-icon>
+            <div class="mensaje-der off" *ngIf="!mensaje.reported && !mensaje.active">
+                <span>{{mensaje.mensaje}}</span>
+            </div>
+            <div class="mensaje-der" *ngIf="!mensaje.reported && mensaje.active">
+                <span>{{mensaje.mensaje}}</span>
+            </div>
+            <div class="mensaje-der reported-der" *ngIf="mensaje.reported && mensaje.active">
+                <span>{{mensaje.mensaje}}</span>
+            </div>
+            <div class="mensaje-der banned" *ngIf="mensaje.reported && !mensaje.active">
+                <span><i>Mensaje baneado</i></span>
             </div>
         </div>
     </div>

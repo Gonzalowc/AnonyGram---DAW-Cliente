@@ -9,7 +9,7 @@ export interface ChatCompleto {
     imagen?:string,
     ultimo_mensaje?:string,
     cantidad_mensajes?:number
-    activo?:boolean
+    activo:boolean
 }
 export interface ChatModel {
     id_chat: number,
@@ -20,6 +20,7 @@ export interface ChatModel {
     ultimo_mensaje?:string,
     timestamp:string
     imagen?:string,
+    activo:boolean;
 }
 
 export interface ChatStadistics{

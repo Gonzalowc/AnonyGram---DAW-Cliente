@@ -1,4 +1,12 @@
 @import '/src/global';
+
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+
 .zona-admin {
     display: grid;
     grid-template-columns:  1fr 1fr 1fr;
@@ -15,6 +23,9 @@
   .item {
     box-shadow: -3px -1px 20px 7px rgba(0, 0, 0, 0.19);
     color: #242424;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     background-image: linear-gradient(45deg, rgba(78, 125, 150, 0.25) 0%, rgba(233, 113, 16, 0.3) 100%);
     font-weight: 600;
     text-align: center;

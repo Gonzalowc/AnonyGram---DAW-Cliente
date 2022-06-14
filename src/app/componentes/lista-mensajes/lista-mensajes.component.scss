@@ -1,4 +1,10 @@
 @import '../../../global';
+
+mat-expansion-panel {
+    color: $marino;
+    border-bottom: 1px solid $azul-oscuro;
+}
+
 .red {
     color: red;
 }
@@ -12,4 +18,8 @@ td {
 
 .off {
     color: $naranja;
+}
+
+.valid {
+    color: $azul-oscuro;
 }

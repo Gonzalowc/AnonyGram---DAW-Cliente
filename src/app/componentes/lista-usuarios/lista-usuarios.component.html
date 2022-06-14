@@ -42,8 +42,8 @@
                 <span class="off" *ngIf="usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']"></fa-icon></span>
             </span>
             <span *ngIf="usuario.activo">
-                <span class="red" *ngIf="!usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']" (click)="changeSearchChat(usuario);"></fa-icon></span>
-                <span class="green" *ngIf="usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']" (click)="changeSearchChat(usuario);"></fa-icon></span>
+                <span data-toggle="tooltip bs-tooltip-top" title=" Detener Busqueda de chat " class="red" *ngIf="!usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']" (click)="changeSearchChat(usuario);"></fa-icon></span>
+                <span data-toggle="tooltip bs-tooltip-top" title=" Buscando chat " class="green" *ngIf="usuario.active_new_chat"><fa-icon [icon]="['fas', 'power-off']" (click)="changeSearchChat(usuario);"></fa-icon></span>
             </span>
         </td>
     </ng-container>
@@ -51,9 +51,9 @@
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell class="text-left" *matCellDef="let usuario">
 
-            <fa-icon class="mr-4" [icon]="['fas', 'user-injured']" (click)="openDialogEdit(usuario);" *ngIf="usuario.activo"></fa-icon>
-            <fa-icon [icon]="['fas', 'ban']" class="red" *ngIf="!usuario.activo" (click)="changeActive(usuario)"></fa-icon>
-            <fa-icon [icon]="['fas', 'heart-pulse']" class="green" *ngIf="usuario.activo" (click)="changeActive(usuario)"></fa-icon>
+            <fa-icon data-toggle="tooltip bs-tooltip-top" title=" Editar Usuario " class="mr-4" [icon]="['fas', 'user-injured']" (click)="openDialogEdit(usuario);" *ngIf="usuario.activo"></fa-icon>
+            <fa-icon data-toggle="tooltip bs-tooltip-top" title=" Activar Usuario " [icon]="['fas', 'ban']" class="red" *ngIf="!usuario.activo" (click)="changeActive(usuario)"></fa-icon>
+            <fa-icon data-toggle="tooltip bs-tooltip-top" title=" Banear Usuario " [icon]="['fas', 'heart-pulse']" class="green" *ngIf="usuario.activo" (click)="changeActive(usuario)"></fa-icon>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

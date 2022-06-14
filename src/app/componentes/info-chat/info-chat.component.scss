@@ -1,4 +1,5 @@
 @import '../../../_global.scss';
+
 .example-card {
     border-radius: 0px 0px 15px 0px;
     max-width: 100%;
@@ -16,23 +17,44 @@
     }
   }
   
-  
   hr {
-    border: 1px solid black;
+    border: 1px solid $marino;
     padding: 0;
     margin: 0;
   }
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  .header-image {
+    background-image: url('../../../assets/img/messages_fast.gif');
+    z-index: 2;
     background-size: cover;
+  }
+
+  mat-card {
+    &:hover{
+      background-color: $naranja-03;
+    }
+    &:active{
+      background-color: $naranja;
+    }
   }
   
   mat-card-title {
     font-weight: bold;
-    overflow: hidden;
+    height: 25px;
+    
+  }
+
+  mat-card-subtitle{
+    height: 25px;
+  }
+
+  .off {
+    background-color: $azul-claro;
   }
   
-  
+  mat-card-title, mat-card-subtitle {
+    overflow: hidden;
+    
+  }
   
   @media screen and (max-width: 800px) {
     div > div {
@@ -40,5 +62,6 @@
     }
     mat-card-title, mat-card-subtitle {
       display: none;
+      
     }
   }

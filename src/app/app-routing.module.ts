@@ -9,13 +9,15 @@ import { AuthguardService } from './services/security/authguard.service';
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 import { ZonaAdminComponent } from './componentes/zona-admin/zona-admin.component';
 import { ListaChatsComponent } from './componentes/lista-chats/lista-chats.component';
+import { AdminAuthGuardService } from './services/security/admin-auth-guard.service';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
+  {path: "redirect", component: LoginComponent , canActivate: [AuthguardService]},
   {path: "chat", component: ChatComponent, canActivate: [AuthguardService]},
-  {path: "admin", component: ZonaAdminComponent },
+  {path: "admin", component: ZonaAdminComponent, canActivate: [AdminAuthGuardService] },
 ];
 
 @NgModule({

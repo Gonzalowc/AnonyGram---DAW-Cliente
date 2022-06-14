@@ -23,8 +23,11 @@
     <ng-container matColumnDef="imagen">
         <th mat-header-cell *matHeaderCellDef>imagen</th>
         <td mat-cell class="text-left" *matCellDef="let chat">
-            <span *ngIf="chat.activo"><!-- --></span>
-            <span *ngIf="!chat.activo" class="off"><!-- --></span>
+            <mat-card >
+                <mat-card-header>
+                    <div mat-card-avatar *ngIf="chat.imagen" class="header-image" style="background-image: url('{{chat.imagen}}');"></div>
+                </mat-card-header>
+            </mat-card>
         </td>
     </ng-container>
     <ng-container matColumnDef="mensajes">
@@ -44,9 +47,9 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell class="text-left" *matCellDef="let chat">
-            <fa-icon class="mr-4" [icon]="['fas', 'user-injured']" (click)="openDialogEdit(chat);" *ngIf="chat.activo"></fa-icon>
-            <fa-icon [icon]="['fas', 'ban']" class="red" *ngIf="!chat.activo"></fa-icon>
-            <fa-icon [icon]="['fas', 'heart-pulse']" class="green" *ngIf="chat.activo"></fa-icon>
+            <fa-icon data-toggle="tooltip bs-tooltip-top" title=" Editar Chat " class="mr-4" [icon]="['fas', 'file-pen']" (click)="openDialogEdit(chat);" *ngIf="chat.activo"></fa-icon>
+            <fa-icon  data-toggle="tooltip bs-tooltip-top" title=" Activar Chat " [icon]="['fas', 'comment-slash']" class="red" *ngIf="!chat.activo" (click)="changeActive(chat)"></fa-icon>
+            <fa-icon  data-toggle="tooltip bs-tooltip-top" title=" Banear chat " [icon]="['fas', 'heart-pulse']" class="green" *ngIf="chat.activo" (click)="changeActive(chat)"></fa-icon>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

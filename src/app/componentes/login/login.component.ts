@@ -48,9 +48,8 @@ export class LoginComponent implements OnInit {
             if (data) {
               this.usuarioRespuesta = data;
               saveData("sesion", JSON.stringify(this.usuarioRespuesta));
-              console.log(this.usuarioRespuesta);
             }
-            this.router.navigate(['/chat']);
+            this.router.navigate(['/redirect']);
           }, error: (error) => {
             console.log("No se ha podido logear el usuario");
           }

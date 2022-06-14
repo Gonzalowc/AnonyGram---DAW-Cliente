@@ -1,10 +1,11 @@
 <div >
     <mat-card class="example-card">
         <mat-card-header>
-            <div *ngIf="user" mat-card-avatar class="example-header-image" style="background-image: url('{{user.imagen}}');"></div>
+            <div *ngIf="user && user.imagen" mat-card-avatar class="example-header-image" style="background-image: url('{{user.imagen}}');"></div>
+            <div *ngIf="user && !user.imagen" mat-card-avatar class="example-header-image" style="background-image: url('../../../assets/img/messages_fast.gif');"></div>
             <!--Titulo-->
             <mat-card-title *ngIf="user && user.nombre_chat">{{user.nombre_chat}}</mat-card-title>
-            <mat-card-title *ngIf="!user"> Chat PRUEBA</mat-card-title>
+            <mat-card-title *ngIf="!user"> Selecciona un chat para empezar</mat-card-title>
         </mat-card-header>
     </mat-card>
 </div>

@@ -1,5 +1,5 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faAddressCard, faArrowCircleLeft, faArrowRotateLeft, faBan, faCalendarDay, faCirclePause, faComments, faCommentSlash, faDiagramProject, faFileSignature, faGlobe, faHeartPulse, faPaperPlane, faPowerOff, faSquarePollVertical, faToggleOff, faToggleOn, faUserGroup, faUserInjured} from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard, faArrowCircleLeft, faArrowRotateLeft, faBan, faCalendarDay, faCircleCheck, faCirclePause, faComments, faCommentSlash, faDiagramProject, faFilePen, faFileSignature, faGlobe, faHeartPulse, faPaperPlane, faPowerOff, faSquarePollVertical, faToggleOff, faToggleOn, faTriangleExclamation, faUserGroup, faUserInjured} from '@fortawesome/free-solid-svg-icons';
 import {  } from '@fortawesome/free-regular-svg-icons';
 
 export const icons: IconDefinition[] = [
@@ -13,9 +13,11 @@ export const icons: IconDefinition[] = [
     faToggleOn,
     faToggleOff,
     faCirclePause,
+    faCircleCheck,
     faAddressCard,
     faCommentSlash,
     faArrowRotateLeft,
+    faTriangleExclamation,
     //editar user
     faUserInjured,
     //editar chat
@@ -25,4 +27,5 @@ export const icons: IconDefinition[] = [
     //activar desactivar
     faPowerOff,
     faHeartPulse,
+    faFilePen,
 ];

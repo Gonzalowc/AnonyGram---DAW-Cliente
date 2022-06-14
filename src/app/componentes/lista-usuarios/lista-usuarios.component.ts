@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { UsuarioCompleto } from '../../shared/models/usuarioModel';
@@ -16,14 +16,17 @@ export class ListaUsuariosComponent implements OnInit {
   displayedColumns = ["id", "nombre", "usuario", "rol", "registro", "buscando", "actions"];
   usuarioSelect!: UsuarioCompleto;
   listaUsuarios: UsuarioCompleto[] = [];
-  dialogRef!:MatDialog | undefined;
+  dialogRef!: MatDialog | undefined;
 
   constructor(private usuarioService: UsuarioService, private adminService: AdminService, private dialog: MatDialog) { this.getAllUsuarios(); }
   ngOnInit(): void {
   }
   getAllUsuarios() {
     this.usuarioService.getAllUser().subscribe({
-      next: (data) => this.listaUsuarios = data,
+      next: (data) => {
+        this.listaUsuarios = data
+        this.comprobarDatos()
+      },
       error: (error) => console.log("No se han podido cargar los usuarios")
     });
 
@@ -47,7 +50,8 @@ export class ListaUsuariosComponent implements OnInit {
       }
     });
   }
-  changeActive(usuario:UsuarioCompleto){
+
+  changeActive(usuario: UsuarioCompleto) {
     this.adminService.updateActivoUsuario(usuario.id_usuario).subscribe({
       next: (data) => {
         this.listaUsuarios.forEach((element) => {
@@ -59,7 +63,7 @@ export class ListaUsuariosComponent implements OnInit {
     })
   }
 
-  openDialogEdit(usuario:UsuarioCompleto){
+  openDialogEdit(usuario: UsuarioCompleto) {
     this.dialog.closeAll();
     const dialogRef = this.dialog.open(UpdateUsuarioComponent, {
       data: usuario
@@ -72,7 +76,7 @@ export class ListaUsuariosComponent implements OnInit {
               element = data;
             }
           });
-        }else{
+        } else {
           console.log("Cancelada la edición")
         }
       }

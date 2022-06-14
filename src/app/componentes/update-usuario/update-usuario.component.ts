@@ -44,8 +44,10 @@ export class UpdateUsuarioComponent implements OnInit {
     this.usuarioSelected.rol = rol != this.usuarioSelected.rol ? rol : this.usuarioSelected.rol;
     this.usuarioSelected.name = name != this.usuarioSelected.name ? name : this.usuarioSelected.name;
     this.adminService.updateUser(this.usuarioSelected).subscribe({
-      next: (data) => { this.usuarioSelected = data ? this.usuarioSelected : this.data },
-      error: (error) => { console.log("No se ha actualizado el usuario") }
+      next: (data) => 
+        this.usuarioSelected = data ? this.usuarioSelected : this.data ,
+      error: (error) => 
+        console.log("No se ha actualizado el usuario")
     });
     this.data = this.usuarioSelected;
   }

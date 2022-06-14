@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChatCompleto, ChatStadistics } from 'src/app/shared/models/chatModel';
-import { MensajeStadistics } from 'src/app/shared/models/mensajeModel';
+import { MensajeCompleto, MensajeStadistics } from 'src/app/shared/models/mensajeModel';
 import { UsuarioStadistics, UsuarioCompleto } from 'src/app/shared/models/usuarioModel';
 import { environment } from 'src/environments/environment';
 
@@ -69,4 +69,38 @@ export class AdminService {
     httpParams.set('idUsuario', idUsuario);
     return this.http.get<boolean>(this.baseUrl + `/admin/usuario/active?idUsuario=${idUsuario}`, {params: httpParams});
   }
+
+  updateActivochat(idChat:number):Observable<boolean>{
+    let httpParams = new HttpParams();
+    httpParams.set('idChat', idChat);
+    return this.http.get<boolean>(this.baseUrl + `/admin/chat/active?idChat=${idChat}`, {params: httpParams});
+  }
+
+  getMensajesReported(): Observable<MensajeCompleto[]> {
+    return this.http.get<MensajeCompleto[]>(this.baseUrl + `/admin/mensaje/reported`);
+  }
+
+getMessageBanned(): Observable<MensajeCompleto[]> {
+    return this.http.get<MensajeCompleto[]>(this.baseUrl + `/admin/mensaje/banned`);
+  }
+
+  confirmReport(idMensaje:number):Observable<boolean>{
+    let httpParams = new HttpParams();
+    httpParams.set('idMensaje', idMensaje);
+    return this.http.get<boolean>(this.baseUrl + `/admin/mensaje/confirmReport?idMensaje=${idMensaje}`, {params: httpParams});
+  }
+
+  renovalMessage(idMensaje:number):Observable<boolean>{
+    let httpParams = new HttpParams();
+    httpParams.set('idMensaje', idMensaje);
+    return this.http.get<boolean>(this.baseUrl + `/admin/mensaje/renovalMessage?idMensaje=${idMensaje}`, {params: httpParams});
+  }
+
+  whiteMessage(idMensaje:number):Observable<boolean>{
+    let httpParams = new HttpParams();
+    httpParams.set('idMensaje', idMensaje);
+    return this.http.get<boolean>(this.baseUrl + `/admin/mensaje/whiteMessage?idMensaje=${idMensaje}`, {params: httpParams});
+  }
+
+
 }

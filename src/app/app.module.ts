@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -33,6 +34,8 @@ import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuar
 import { MatNativeDateModule } from '@angular/material/core';
 import { UpdateUsuarioComponent } from './componentes/update-usuario/update-usuario.component';
 import { UpdateChatComponent } from './componentes/update-chat/update-chat.component';
+import { MatTooltipModule, TooltipComponent } from '@angular/material/tooltip';
+import { ListaMensajesComponent } from './componentes/lista-mensajes/lista-mensajes.component';
 
 
 const config: SocketIoConfig = {url: 'http://localhost:8080', options: {}};
@@ -52,6 +55,7 @@ const config: SocketIoConfig = {url: 'http://localhost:8080', options: {}};
     ListaUsuariosComponent,
     UpdateUsuarioComponent,
     UpdateChatComponent,
+    ListaMensajesComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,8 @@ const config: SocketIoConfig = {url: 'http://localhost:8080', options: {}};
     RouterModule,
     MatTableModule,
     MatNativeDateModule,
-    
+    MatTooltipModule,
+    MatExpansionModule
   ],
   providers: [
     UsuarioService,

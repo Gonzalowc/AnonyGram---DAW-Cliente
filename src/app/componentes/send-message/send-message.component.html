@@ -1,4 +1,4 @@
-<form class="send-message" [formGroup]="sendMensajeForm" *ngIf="idChat">
+<form class="send-message" [formGroup]="sendMensajeForm" *ngIf="chat && chat.activo">
   <mat-form-field class="wrapper-textArea" appearance="fill">
     <textarea formControlName="mensaje" class="form-control" matInput placeholder="Send new Message ..."></textarea>
   </mat-form-field>

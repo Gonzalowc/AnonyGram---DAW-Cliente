@@ -8,7 +8,7 @@ import { ChatModel } from 'src/app/shared/models/chatModel';
 })
 export class InfoUserComponent implements OnInit {
   @Input() user!: ChatModel;
-
+  //const regex: = new RegExp('(http[s]?:\/\/){1}([\w\W]{1,})\.(jpn|jpeg|gif)', 'g');
   constructor() { }
 
   ngOnInit(): void {

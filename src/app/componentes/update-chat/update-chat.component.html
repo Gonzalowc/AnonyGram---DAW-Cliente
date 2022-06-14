@@ -1,6 +1,6 @@
 <mat-dialog-content class="modal w-75 mt-5 m-5 h-100 clearfix" tabindex="-1" role="dialog">
     <h3 mat-dialog-title class="center">
-        <fa-icon [icon]="['fas', 'user-injured']"></fa-icon> Modificar Usuario
+        <fa-icon [icon]="['fas', 'file-pen']"></fa-icon> Modificar Chat
     </h3>
     <form [formGroup]="updateChat" novalidate>
         <div class="form-row form-group">
@@ -25,7 +25,7 @@
                 </div>-->
             </div>
             <div class="column-half">
-                <label>Nombesta</label>
+                <label>Nombre Chat Respuesta</label>
                 <input type="text" class="form-control" formControlName="nrespuesta">
                 <!--<div *ngIf="updateChat.controls['nrespuesta'].invalid && (updateChat.controls['nrespuesta'].dirty || updateChat.controls['nrespuesta'].touched)"
                     class="alert alert-danger">

@@ -35,7 +35,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
   
   constructor(private mensajeService: MensajeService, private chatService:ChatService) { }
   ngAfterViewInit(): void {
-    console.log("Get all chats"+ this.userLogging.id_usuario)
     this.infoChat = this.getAllChats();
     this.getAllMensajes();
   }
@@ -54,7 +53,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     let value:string = getData("sesion");
     if(value){
       this.userLogging =  JSON.parse(value);
-      console.log("CHAT LOGIN: "+this.userLogging.name)
     }
     this.allMensajes = new Map<number,MensajeCompleto[]>();
     
@@ -117,10 +115,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
   /*Get message from child component send-message*/
   getMessage(mensajeReceived: MensajeCompleto) {
     if (mensajeReceived.mensaje != '' && this.allMensajes?.has(mensajeReceived.id_chat)) {
-      console.log("Envia mensaje")
       this.sendMensaje(mensajeReceived)
     }
-    console.log("no envia mensaje")
   }
 
   getMessageResponse(mensajeReceived:MensajeCompleto){
@@ -132,7 +128,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
         }
       } )
     }
-    this.filterMessagesByChatSelected();
+    //this.filterMessagesByChatSelected();
   }
 
   getChatResponse(chat:ChatCompleto){
@@ -146,6 +142,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
         "ultimo_mensaje": "No hay mensajes",
         "timestamp": chat.fecha_creacion.toString(),
         "imagen": chat.imagen,
+        "activo":chat.activo
       }
       if(chatmodel.id_usuario_creador == this.userLogging.id_usuario || 
         chatmodel.id_usuario_respuesta == this.userLogging.id_usuario){
@@ -185,7 +182,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     let chatModels:ChatModel[] = [];
     this.chatService.getAllChats(this.userLogging.id_usuario).subscribe({
       next: (chats) => {
-        console.log("buscando chats")
         chats.forEach(chat => {
           let chatModel:ChatModel = {
             "id_chat": chat.id_chat,
@@ -196,12 +192,15 @@ export class ChatComponent implements OnInit, AfterViewInit {
             "ultimo_mensaje": chat.ultimo_mensaje,
             "timestamp": chat.fecha_creacion.toString(),
             "imagen": chat.imagen,
+            "activo":chat.activo
           }
           this.initAllMensajes(chatModel, []);
           chatModels.push(chatModel);
         });
+        chatModels = sortByLastModifiedAsendChat(chatModels);
       }
     })
+    
     return chatModels;
   }
 
@@ -209,8 +208,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.mensajeService.getAllMensajes(this.userLogging.id_usuario).subscribe({
       next: (mensajes) => {
         mensajes.forEach((mensaje) => {
-          console.log(mensaje);
-          console.log(this.allMensajes)
           if(mensaje.listMensajes!=undefined){
             this.initAllMensajesId(mensaje.idChat, mensaje.listMensajes);
           }else{
@@ -231,21 +228,21 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 }
 export function saveData(variable: string, valor: any){
-  console.log("Datos guardados en sesion")
+  console.info("Datos guardados en sesion")
   sessionStorage.setItem(variable, valor);
 }
 export function getData(variable: string):any{
   return sessionStorage.getItem(variable)
 }
 
-function sortByLastModifiedAsendMensaje(array:any) {
+export function sortByLastModifiedAsendMensaje(array:any) {
   return array.sort((a: any, b: any) => {
-    return <any>new Date(b.timestamp) - <any>new Date(a.timestamp);
+    <any>new Date(b.timestamp) - <any>new Date(a.timestamp);
   });
 }
 
-function sortByLastModifiedAsendChat(array:any) {
-  return array.sort((a: any, b: any) => {
-    return <any>new Date(b.timestamp) - <any>new Date(a.timestamp);
+export function sortByLastModifiedAsendChat(array:any) {
+  return array.sort((a: ChatModel, b: ChatModel) => {
+    <any>new Date(b.fecha_ultimo_mensaje ? b.fecha_ultimo_mensaje :b.timestamp) - <any>new Date(a.fecha_ultimo_mensaje?a.fecha_ultimo_mensaje :a.timestamp);
   });
 }

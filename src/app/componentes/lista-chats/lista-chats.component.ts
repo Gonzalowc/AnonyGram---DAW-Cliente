@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AdminService } from 'src/app/services/admin/admin.service';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { ChatCompleto } from 'src/app/shared/models/chatModel';
 import { UpdateChatComponent } from '../update-chat/update-chat.component';
@@ -17,16 +18,23 @@ export class ListaChatsComponent implements OnInit {
   "mensajes","creacion", "actions"];
   chatSelect!: ChatCompleto;
   listaChats: ChatCompleto[] = [];
-  constructor(private chatService:ChatService, private dialog: MatDialog) {this.getAllChats() }
+  constructor(private chatService:ChatService, private dialog: MatDialog, private adminService:AdminService) {this.getAllChats() }
 
   ngOnInit(): void {
+  }
+  comprobarDatos() {
+    if (this.listaChats.length > 0) {
+      this.datos = true;
+    } else {
+      this.datos = false;
+    }
   }
 
   getAllChats(){
     this.chatService.getAllChatsAdmin().subscribe({
       next: (data) => {
-        console.log(data);
-        this.listaChats = data},
+        this.listaChats = data
+        this.comprobarDatos()},
     })
   }
 
@@ -40,6 +48,7 @@ export class ListaChatsComponent implements OnInit {
         if (data) {
           this.listaChats.forEach(element => {
             if (element.id_chat == data.id_chat) {
+              console.log("Cambio");
               element = data;
             }
           });
@@ -48,6 +57,18 @@ export class ListaChatsComponent implements OnInit {
         }
       }
     });
+  }
+
+  changeActive(chat:ChatCompleto){
+    this.adminService.updateActivochat(chat.id_chat).subscribe({
+      next: (data) => {
+        this.listaChats.forEach((element) => {
+          if (element.id_chat == chat.id_chat) {
+            element.activo = !element.activo;
+          }
+        })
+      }
+    })
   }
 
 }

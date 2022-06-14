@@ -5,7 +5,7 @@
         </div>
         <div class="group">
             <a class="enlace"><fa-icon [icon]="['fas', 'user-group']"></fa-icon> Usuarios</a>
-            <a class="enlace"><fa-icon [icon]="['fas', 'diagram-project']"></fa-icon> Chats</a>
+            <a class="enlace" href="chat"><fa-icon [icon]="['fas', 'diagram-project']"></fa-icon> Chat</a>
             <a class="enlace"><fa-icon [icon]="['fas', 'comments']"></fa-icon> Mensajes</a>
             <span class="enlace">
                 <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon> <input [(ngModel)]="dateSelected"
@@ -19,156 +19,170 @@
             <a class="enlace" (click)="openByDate()"><fa-icon [icon]="['fas', 'arrow-rotate-left']"></fa-icon></a>
         </div>
     </nav>
-    <div class="item" (click)="openUsuarios();">
-        <fa-icon [icon]="['fas', 'user-group']"></fa-icon> Usuarios <fa-icon [icon]="['fas', 'user-group']"></fa-icon>
+    <div class="item" (click)="openUsuarios();" data-toggle="tooltip bs-tooltip-top" title=" Abrir lista de usuarios ">
+        <span><fa-icon [icon]="['fas', 'user-group']"></fa-icon> Usuarios <fa-icon [icon]="['fas', 'user-group']"></fa-icon></span>
         <div class="flexbox">
-            <div class="flex-item">
+            <div class="flex-item" data-toggle="tooltip" title=" Usuarios Totales hasta {{dateSelected}} ">
                 <div class="content" *ngIf="usuarioStadistic">
                     <fa-icon [icon]="['fas', 'globe']"></fa-icon>
-                    <p>{{usuarioStadistic.usuarios_totales}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{usuarioStadistic.usuarios_totales}} ">{{usuarioStadistic.usuarios_totales}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!usuarioStadistic">
                     <fa-icon [icon]="['fas', 'globe']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
-            <div class="flex-item">
+            <div class="flex-item" data-toggle="tooltip bs-tooltip-top" title=" Usuarios Activos de la fecha {{dateSelected}}">
                 <div class="content" *ngIf="usuarioStadistic">
                     <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
-                    <p>{{usuarioStadistic.usuarios_activos}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{usuarioStadistic.usuarios_activos}} ">{{usuarioStadistic.usuarios_activos}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!usuarioStadistic">
                     <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
-            <div class="flex-item">
-                <div class="content" *ngIf="usuarioStadistic">
+            <div class="flex-item" data-toggle="tooltip bs-tooltip-top" title=" Usuarios Inactivos de la fecha {{dateSelected}} ">
+                <div class="content" *ngIf="usuarioStadistic" >
                     <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
-                    <p>{{usuarioStadistic.usuarios_inactivos}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{usuarioStadistic.usuarios_inactivos}} ">{{usuarioStadistic.usuarios_inactivos}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!usuarioStadistic">
                     <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
-            <div class="flex-item">
+            <div class="flex-item" data-toggle="tooltip bs-tooltip-top" title=" Usuarios Registrados el dia {{dateSelected}} ">
                 <div class="content" *ngIf="usuarioStadistic">
                     <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
-                    <p>{{usuarioStadistic.usuarios_registro_hoy}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{usuarioStadistic.usuarios_registro_hoy}} ">{{usuarioStadistic.usuarios_registro_hoy}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!usuarioStadistic">
                     <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
-            <div class="flex-item">
+            <div class="flex-item" data-toggle="tooltip bs-tooltip-top" title=" Usuarios Buscando chat ">
                 <div class="content" *ngIf="usuarioStadistic">
                     <fa-icon [icon]="['fas', 'circle-pause']"></fa-icon>
-                    <p>{{usuarioStadistic.usuarios_buscando_chat}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{usuarioStadistic.usuarios_buscando_chat}} ">{{usuarioStadistic.usuarios_buscando_chat}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!usuarioStadistic">
                     <fa-icon [icon]="['fas', 'circle-pause']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="item" (click)="openChats();">
-        <fa-icon [icon]="['fas', 'diagram-project']"></fa-icon> Chat <fa-icon [icon]="['fas', 'diagram-project']"></fa-icon>
+    <div class="item" (click)="openChats();" data-toggle="tooltip bs-tooltip-top" title=" Abrir lista de chats ">
+        <span><fa-icon [icon]="['fas', 'diagram-project']"></fa-icon> Chats <fa-icon [icon]="['fas', 'diagram-project']"></fa-icon></span>
         <div class="flexbox">
             <div class="flex-item">
-                <div class="content" *ngIf="chatStadistic">
+                <div class="content" *ngIf="chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat Totales hasta {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'globe']"></fa-icon>
-                    <p>{{chatStadistic.chats_totales}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{chatStadistic.chats_totales}} ">{{chatStadistic.chats_totales}}</p>
                 </div>
-                <div class="content" *ngIf="!chatStadistic">
+                <div class="content" *ngIf="!chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat Totales hasta {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'globe']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
             <div class="flex-item">
-                <div class="content" *ngIf="chatStadistic">
+                <div class="content" *ngIf="chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat Activos de la fecha {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
-                    <p>{{chatStadistic.chats_activos}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{chatStadistic.chats_activos}} ">{{chatStadistic.chats_activos}}</p>
                 </div>
-                <div class="content" *ngIf="!chatStadistic">
+                <div class="content" *ngIf="!chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat Activos de la fecha {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
             <div class="flex-item">
-                <div class="content" *ngIf="chatStadistic">
+                <div class="content" *ngIf="chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat Inactivos de la fecha {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
-                    <p>{{chatStadistic.chats_inactivos}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{chatStadistic.chats_inactivos}} ">{{chatStadistic.chats_inactivos}}</p>
                 </div>
-                <div class="content" *ngIf="!chatStadistic">
+                <div class="content" *ngIf="!chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat Inactivos de la fecha {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
             <div class="flex-item">
-                <div class="content" *ngIf="chatStadistic">
+                <div class="content" *ngIf="chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat Creados el dia {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon>
-                    <p>{{chatStadistic.chats_hoy}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{chatStadistic.chats_hoy}} ">{{chatStadistic.chats_hoy}}</p>
                 </div>
-                <div class="content" *ngIf="!chatStadistic">
+                <div class="content" *ngIf="!chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat Creados el dia {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
             <div class="flex-item">
-                <div class="content" *ngIf="chatStadistic">
+                <div class="content" *ngIf="chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat sin Comenzar de la fecha {{dateSelected}}">
                     <fa-icon [icon]="['fas', 'comment-slash']"></fa-icon>
-                    <p>{{chatStadistic.chats_sin_comenzar}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{chatStadistic.chats_sin_comenzar}} ">{{chatStadistic.chats_sin_comenzar}}</p>
                 </div>
-                <div class="content" *ngIf="!chatStadistic">
+                <div class="content" *ngIf="!chatStadistic" data-toggle="tooltip bs-tooltip-top" title=" Chat sin Comenzar de la fecha {{dateSelected}}">
                     <fa-icon [icon]="['fas', 'comment-slash']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="item" (click)="openMensajes();">
-        <fa-icon [icon]="['fas', 'comments']"></fa-icon> Mensajes <fa-icon [icon]="['fas', 'comments']"></fa-icon>
+    <div class="item" (click)="openMensajes();" data-toggle="tooltip bs-tooltip-top" title=" Abrir lista de mensajes ">
+        <span><fa-icon [icon]="['fas', 'comments']"></fa-icon> Mensajes <fa-icon [icon]="['fas', 'comments']"></fa-icon></span>
         <div class="flexbox">
             <div class="flex-item">
-                <div class="content" *ngIf="mensajeStadistic">
+                <div class="content" *ngIf="usuarioStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes totales hasta {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'globe']"></fa-icon>
-                    <p>{{mensajeStadistic.mensajes_totales}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{mensajeStadistic.mensajes_totales}} ">{{mensajeStadistic.mensajes_totales}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!mensajeStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes totales hasta {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'globe']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
             <div class="flex-item">
-                <div class="content" *ngIf="mensajeStadistic">
+                <div class="content" *ngIf="mensajeStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes Activos de la fecha {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
-                    <p>{{mensajeStadistic.mensajes_activos}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{mensajeStadistic.mensajes_activos}} ">{{mensajeStadistic.mensajes_activos}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!mensajeStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes Activos de la fecha {{dateSelected}}">
                     <fa-icon [icon]="['fas', 'toggle-on']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
             <div class="flex-item">
-                <div class="content" *ngIf="mensajeStadistic">
+                <div class="content" *ngIf="mensajeStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes Inactivos de la fecha {{dateSelected}}">
                     <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
-                    <p>{{mensajeStadistic.mensajes_inactivos}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{mensajeStadistic.mensajes_inactivos}} ">{{mensajeStadistic.mensajes_inactivos}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!mensajeStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes Inactivos de la fecha {{dateSelected}}">
                     <fa-icon [icon]="['fas', 'toggle-off']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
             <div class="flex-item">
-                <div class="content" *ngIf="mensajeStadistic">
+                <div class="content" *ngIf="mensajeStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes del dia {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon>
-                    <p>{{mensajeStadistic.mensajes_hoy}}</p>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{mensajeStadistic.mensajes_hoy}} ">{{mensajeStadistic.mensajes_hoy}}</p>
                 </div>
-                <div class="content" *ngIf="!mensajeStadistic">
+                <div class="content" *ngIf="!mensajeStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes del dia {{dateSelected}} ">
                     <fa-icon [icon]="['fas', 'calendar-day']"></fa-icon>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="content" *ngIf="mensajeStadistic && mensajeStadistic.mensajes_reportados == 0" data-toggle="tooltip bs-tooltip-top" title=" Mensajes Baneados ">
+                    <fa-icon [icon]="['fas', 'ban']"></fa-icon>
+                    <p data-toggle="tooltip bs-tooltip-top" title=" {{mensajeStadistic.mensajes_reportados}} ">{{mensajeStadistic.mensajes_reportados}}</p>
+                </div>
+                <div class="content red" *ngIf="mensajeStadistic && mensajeStadistic.mensajes_reportados > 0" data-toggle="tooltip bs-tooltip-top" title=" Mensajes Baneados ">
+                    <fa-icon class="red" [icon]="['fas', 'ban']"></fa-icon>
+                    <p class="red" data-toggle="tooltip bs-tooltip-top" title=" {{mensajeStadistic.mensajes_reportados}} ">{{mensajeStadistic.mensajes_reportados}}</p>
+                </div>
+                <div class="content" *ngIf="!mensajeStadistic" data-toggle="tooltip bs-tooltip-top" title=" Mensajes Baneados ">
+                    <fa-icon [icon]="['fas', 'ban']"></fa-icon>
                     <p>0</p>
                 </div>
             </div>
@@ -177,5 +191,6 @@
     <div class="item-3-row item">
         <app-lista-usuarios *ngIf="abrirUsuario"></app-lista-usuarios>
         <app-lista-chats *ngIf="abrirChat"></app-lista-chats>
+        <app-lista-mensajes *ngIf="abrirMensajes"></app-lista-mensajes>
     </div>
 </div>

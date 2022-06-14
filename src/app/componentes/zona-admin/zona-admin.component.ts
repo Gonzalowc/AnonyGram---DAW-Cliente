@@ -7,6 +7,8 @@ import { ChatStadistics } from '../../shared/models/chatModel';
 import { MensajeStadistics } from '../../shared/models/mensajeModel';
 import { UsuarioStadistics } from '../../shared/models/usuarioModel';
 import { DatePipe } from '@angular/common';
+import { TooltipPosition } from '@angular/material/tooltip';
+
 @Component({
   selector: 'app-zona-admin',
   templateUrl: './zona-admin.component.html',
@@ -20,6 +22,8 @@ export class ZonaAdminComponent implements OnInit {
   mensajeStadistic!: MensajeStadistics;
   usuarioStadistic!: UsuarioStadistics;
   dateSelected: any = this.datePipe.transform(new Date(), 'yyyy-MM-dd')
+  showDelay:number = 1000
+  hideDelay:number = 500
 
   constructor(private adminService: AdminService, private fb: FormBuilder,private datePipe: DatePipe) {}
   
@@ -35,7 +39,6 @@ export class ZonaAdminComponent implements OnInit {
   }
 
   openByDate(){
-    console.log(this.dateSelected)
     this.getChatsStadisticsByDate();
     this.getMensajesStadisticsByDate();
     this.getUsuariosStadisticsByDate();
@@ -45,18 +48,20 @@ export class ZonaAdminComponent implements OnInit {
     this.abrirChat = false;
     this.abrirMensajes = false;
     this.abrirUsuario = true;
+    this.openByDate();
   }
 
   openChats() {
     this.abrirMensajes = false;
     this.abrirUsuario = false;
     this.abrirChat = true;
+    this.openByDate();
   }
   openMensajes() {
-    alert("Abriendo mensajes");
     this.abrirChat = false;
     this.abrirUsuario = false;
     this.abrirMensajes = true;
+    this.openByDate();
   }
 
   getChatsStadistics() {

@@ -13,22 +13,32 @@ export class MensajeService {
   private stompClient!: CompatClient;
   mensaje_response$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   baseUrl: string = environment.BASE_URL;
-
   constructor(private http:HttpClient){}
 
 
   getAllMensajes(usuario: number): Observable<AllMensajesCompleto[]> {
     let httpParams = new HttpParams();
     httpParams.set('idUsuario',usuario);
-    return this.http.get<AllMensajesCompleto[]>(this.baseUrl + `/mensaje/all?idUsuario=${usuario}`)
+    return this.http.get<AllMensajesCompleto[]>(this.baseUrl + `/mensaje/all?idUsuario=${usuario}`);
   }
 
 
   setConnected(connected: boolean) {
     this.disabled = !connected;
-    if(connected) {
-      
-    }
+  }
+
+  banMessage(idUsuario:number, idMensaje:number): Observable<boolean>{
+    let httpParams = new HttpParams();
+    httpParams.set('idUsuario',idUsuario);
+    httpParams.set('idMensaje',idMensaje);
+    return this.http.get<boolean>(this.baseUrl + `/mensaje/ban?idUsuario=${idUsuario}&idMensaje=${idMensaje}`);
+  }
+
+  changeActiveMessage(idUsuario:number, idMensaje:number): Observable<boolean>{
+    let httpParams = new HttpParams();
+    httpParams.set('idUsuario',idUsuario);
+    httpParams.set('idMensaje',idMensaje);
+    return this.http.get<boolean>(this.baseUrl + `/mensaje/changeActive?idUsuario=${idUsuario}&idMensaje=${idMensaje}`);
   }
 
   connect() {
@@ -40,7 +50,6 @@ export class MensajeService {
       _this.setConnected(true);
       _this.stompClient.subscribe("/topic/hi", function(mensajeResponse){
         _this.mensaje_response$.next(JSON.parse(mensajeResponse.body));
-        console.log("Respuesta: "+mensajeResponse.body);
       });
     });
   }
